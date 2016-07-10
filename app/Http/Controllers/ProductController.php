@@ -27,7 +27,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Product::create([
+            'name' => $request->input('name')
+        ]);
     }
 
     public function update(Request $request, $id)
