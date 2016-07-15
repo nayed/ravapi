@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Description extends Model
 {
-    public $fillable = ['body'];
+    public $fillable = ['product_id', 'body'];
     
     public function product()
     {

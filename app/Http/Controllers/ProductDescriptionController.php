@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Description;
+use App\Product;
 
 class ProductDescriptionController extends Controller
 {
@@ -26,8 +27,14 @@ class ProductDescriptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($productId, Request $request)
     {
-        //
+        $product = Product::findOrFail($productId);
+
+        $product->descriptions()->save(new Description([
+            'body' => $request->input('body')
+        ]));
+
+        return $product->descriptions;
     }
 }
